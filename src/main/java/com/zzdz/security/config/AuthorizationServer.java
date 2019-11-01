@@ -1,5 +1,6 @@
 package com.zzdz.security.config;
 
+import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,11 @@ import org.springframework.security.oauth2.provider.code.AuthorizationCodeServic
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.Arrays;
 
 /**
  * @Classname AuthorizationServer
@@ -41,6 +46,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthorizationCodeServices authorizationCodeServices;
 
+    @Autowired
+    private TokenEnhancerChain tokenEnhancerChain;
+
 
     /**
      * 配置客户端详情服务
@@ -55,6 +63,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .resourceIds("res1") // 可以访问的访问资源id
                 .authorizedGrantTypes("authorization_code", "implicit", "password", "client_credentials","refresh_token") // 授权模式
                 .scopes("all") // 允许授权的范围
+                //.authorities("admin") // 客户端模式下的权限设置
                 .autoApprove(false) // false跳转到授权页面
                 .redirectUris("http://www.baidu.com");
     }
@@ -81,9 +90,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     @Bean
     public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices services = new DefaultTokenServices();
-        services.setClientDetailsService(clientDetailsService);
-        services.setSupportRefreshToken(true);
-        services.setTokenStore(tokenStore);
+        services.setClientDetailsService(clientDetailsService); // 客户端详情服务
+        services.setSupportRefreshToken(true); // 支持刷新令牌
+        services.setTokenStore(tokenStore); // 令牌存储策略
+        services.setTokenEnhancer(tokenEnhancerChain); // 设置令牌增强（jwt）
+
         services.setAccessTokenValiditySeconds(7200);// 令牌默认有效2小时
         services.setRefreshTokenValiditySeconds(259200); // 刷新令牌默认有效期3天
         return services;

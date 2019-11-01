@@ -14,15 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+    @PostMapping("/login-success")
+    public String loginSuccess() {
+        return "登陆成功。";
+    }
+
     @GetMapping("/hello")
     public String hello() {
         return "hello";
     }
 
 
-    @PostMapping("/login-success")
-    @PreAuthorize("hasAnyAuthority()")
-    public String loginSuccess() {
-        return "登陆成功。";
+    @GetMapping("/r/r1")
+    @PreAuthorize("hasAnyAuthority('p1')")
+    public String r1() {
+        return "hello";
     }
 }
