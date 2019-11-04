@@ -19,21 +19,23 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
  * @Created by joe
  */
 @Configuration
-//@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
 
     /**
      * 密码授权模式需要用
      * @return
      */
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("zs").password("$2a$10$6unbZwvNaZwxWTxVpX.Jx.eP2TitsesC9euLpi2vv7Brps0MVYndq").authorities("p1").build());
-        manager.createUser(User.withUsername("ls").password("$2a$10$eaiuwqSxaQfElELY0a67dOXCmXySY9oODEcUNbi0vVhD0P4vDvKA6").authorities("p2").build());
-        return manager;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        // zs:123
+//        manager.createUser(User.withUsername("zs").password("$2a$10$6unbZwvNaZwxWTxVpX.Jx.eP2TitsesC9euLpi2vv7Brps0MVYndq").authorities("p1").build());
+//        // ls:456
+//        manager.createUser(User.withUsername("ls").password("$2a$10$eaiuwqSxaQfElELY0a67dOXCmXySY9oODEcUNbi0vVhD0P4vDvKA6").authorities("p2").build());
+//
+//        return manager;
+//    }
 
 
     /**

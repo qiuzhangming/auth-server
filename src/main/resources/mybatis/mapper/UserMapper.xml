@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzdz.security.mapper.UserMapper">
+
+<!--        User findByUsername(String username);-->
+    <select id="findByUsername" resultType="com.zzdz.security.model.User">
+        select * from user where username = #{usermame} limit 1
+    </select>
+
+
+<!--    boolean deleteById(Integer id);-->
+    <delete id="deleteById" >
+        delete from user where id = #{id}
+    </delete>
+
+<!--    boolean updateUser(User user);-->
+    <update id="updateUser" parameterType="com.zzdz.security.model.User" >
+        update user set fullname=#{fullname} where id = #{id}
+
+    </update>
+
+<!--        void save(User user);-->
+<!--        parameterType: 参数类型，可以省略-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.zzdz.security.model.User">
+        insert into user (username, password, fullname, mobile, account_non_expired, account_non_locked, enabled, deleted)
+        values (#{username}, #{password}, #{fullname}, #{mobile}, #{accountNonExpired}, #{accountNonLocked}, #{enabled}, #{deleted})
+    </insert>
+
+
+
+</mapper>
