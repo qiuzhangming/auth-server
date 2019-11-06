@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzdz.security.mapper.UserMapper">
 
+    <resultMap id="MyUser" type="com.zzdz.security.model.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="fullname" property="fullname"/>
+        <result column="mobile" property="mobile"/>
+        <result column="enabled" property="enabled"/>
+        <result column="deleted" property="deleted"/>
+        <collection property="authorities" ofType="com.zzdz.security.model.Authority">
+            <id column="authority_id" property="id"/>
+            <result column="authority_name" property="authorityName"/>
+            <result column="authority_describe" property="authorityDescribe"/>
+        </collection>
+    </resultMap>
+
     <!-- void save(User user);-->
     <!-- parameterType: 参数类型，可以省略-->
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.zzdz.security.model.User">
@@ -39,8 +54,13 @@
     </update>
 
     <!-- User findByUsername(String username);-->
-    <select id="findByUsername" resultType="com.zzdz.security.model.User">
-        select * from user where username = #{username} limit 1
+    <select id="findByUsername" resultMap="MyUser">
+        SELECT user.id, user.username, user.password, user.fullname, user.mobile, user.deleted, user.enabled,
+        authority.id authority_id, authority.authority_name, authority.authority_describe
+        FROM user
+        LEFT JOIN relational_user_authority ON relational_user_authority.user_id = user.id
+        LEFT JOIN authority ON authority.id = relational_user_authority.authority_id
+        WHERE user.username = #{username}
     </select>
 
     <!-- List<User> findAllByUsername(@Param("username") String username);-->

@@ -94,8 +94,8 @@ public class UserServiceImplTest {
     @Test
     public void addUsers() {
         List<User> users = new ArrayList<>();
-        User user1 = new User(null, "ls", "456", "李四", "10010", true, false);
-        User user2 = new User(null, "ww", "456", "王五", "10000", true, false);
+        User user1 = new User(null, "ls", "456", "李四", "10010", true, false, null);
+        User user2 = new User(null, "ww", "456", "王五", "10000", true, false, null);
         users.add(user1);
         users.add(user2);
         userService.addUsers(users);

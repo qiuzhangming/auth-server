@@ -35,5 +35,5 @@ public class User {
     // 是否删除
     private Boolean deleted;
 
-    //List<Authority> authorities = new ArrayList<>();
+    List<Authority> authorities = new ArrayList<>();
 }
