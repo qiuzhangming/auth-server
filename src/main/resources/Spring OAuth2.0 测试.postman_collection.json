@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "55374881-502e-4a13-8454-c134ab1e03f3",
+		"name": "Spring OAuth2.0 测试",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取授权码",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/authorize?response_type=code&client_id=c1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code",
+							"description": "获取授权码"
+						},
+						{
+							"key": "client_id",
+							"value": "c1",
+							"description": "客户端ID"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"description": "选填，如果填写的话需要跟服务器保持一致",
+							"disabled": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://www.baidu.com",
+							"description": "选填，如果填写的话需要跟服务器保持一致",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token-简化模式",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/authorize?response_type=token&client_id=c1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "token",
+							"description": "获取token"
+						},
+						{
+							"key": "client_id",
+							"value": "c1",
+							"description": "客户端ID"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"description": "选填，如果填写的话需要跟服务器保持一致",
+							"disabled": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://www.baidu.com",
+							"description": "选填，如果填写的话需要跟服务器保持一致",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token-授权码模式",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=authorization_code&code=rLMLgd&client_id=c1&client_secret=secret&redirect_uri=http://www.baidu.com&scope=all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"description": "授权码模式"
+						},
+						{
+							"key": "code",
+							"value": "rLMLgd",
+							"description": "授权码，使用后失效"
+						},
+						{
+							"key": "client_id",
+							"value": "c1",
+							"description": "客户端id"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"description": "客户端密码"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://www.baidu.com",
+							"description": "授权码模式下需要填写跟服务器相同的地址"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"description": "选填，如果填写的话需要跟服务器保持一致"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token-密码模式",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=password&client_id=c1&client_secret=secret&username=zs&password=123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "密码模式"
+						},
+						{
+							"key": "client_id",
+							"value": "c1",
+							"description": "客户端ID"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"description": "客户端密码"
+						},
+						{
+							"key": "username",
+							"value": "zs",
+							"description": "用户ID"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": "用户密码"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token-客户端模式",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=client_credentials&client_id=c1&client_secret=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"description": "客户端模式"
+						},
+						{
+							"key": "client_id",
+							"value": "c1"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "验证token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/check_token?token=e8653ba1-d81f-4bce-b05d-6fd2906ca679",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "e8653ba1-d81f-4bce-b05d-6fd2906ca679"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刷新token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=fc444e5d-cc5a-48bc-8eff-674cb0027f58&client_id=c1&client_secret=secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "fc444e5d-cc5a-48bc-8eff-674cb0027f58"
+						},
+						{
+							"key": "client_id",
+							"value": "c1"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "测试资源服务",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/r1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"r1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
