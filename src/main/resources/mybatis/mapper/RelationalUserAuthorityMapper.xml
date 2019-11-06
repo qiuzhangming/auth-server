@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzdz.security.mapper.RelationalUserAuthorityMapper">
+
+<!--    boolean save(RelationalUserAuthority userAuthority);-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.zzdz.security.model.RelationalUserAuthority">
+        insert into relational_user_authority (user_id, authority_id)
+        values (#{userId}, #{authorityId})
+    </insert>
+
+<!--    boolean deleteById(@Param("id") Integer id);-->
+    <delete id="deleteById">
+        delete from relational_user_authority where id = #{id}
+    </delete>
+
+<!--    boolean updateById(RelationalUserAuthority userAuthority);-->
+    <update id="updateById">
+        update relational_user_authority
+        set user_id = #{userId}, authority_id = #{authorityId}
+        where id = #{id}
+    </update>
+<!--    RelationalUserAuthority findByUserIdAndAuthorityId(@Param("userId") Integer userId, @Param("authorityId") Integer authorityId);-->
+    <select id="findByUserIdAndAuthorityId" resultType="com.zzdz.security.model.RelationalUserAuthority">
+        select * from relational_user_authority
+        where user_id = #{userId} and authority_id = #{authorityId}
+    </select>
+
+<!--    List<RelationalUserAuthority> findByUserId(@Param("userId") Integer userId);-->
+    <select id="findByUserId" resultType="com.zzdz.security.model.RelationalUserAuthority">
+        select * from relational_user_authority
+        where user_id = #{userId}
+    </select>
+
+</mapper>

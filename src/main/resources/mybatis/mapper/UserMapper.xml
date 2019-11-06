@@ -4,30 +4,93 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzdz.security.mapper.UserMapper">
 
-<!--        User findByUsername(String username);-->
-    <select id="findByUsername" resultType="com.zzdz.security.model.User">
-        select * from user where username = #{usermame} limit 1
-    </select>
+    <!-- void save(User user);-->
+    <!-- parameterType: 参数类型，可以省略-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.zzdz.security.model.User">
+        insert into user (username, password, fullname, mobile, enabled, deleted)
+        values (#{username}, #{password}, #{fullname}, #{mobile}, #{enabled}, #{deleted})
+    </insert>
 
-
-<!--    boolean deleteById(Integer id);-->
+    <!-- boolean deleteById(Integer id);-->
     <delete id="deleteById" >
         delete from user where id = #{id}
     </delete>
 
-<!--    boolean updateUser(User user);-->
-    <update id="updateUser" parameterType="com.zzdz.security.model.User" >
-        update user set fullname=#{fullname} where id = #{id}
-
+    <!-- boolean updateById(User user);-->
+    <update id="updateById" parameterType="com.zzdz.security.model.User" >
+        update user
+        <set>
+            <if test="fullname != null">
+                fullname = #{fullname},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile},
+            </if>
+            <if test="enabled != null ">
+                enabled = #{enabled},
+            </if>
+            <if test="deleted != null ">
+                deleted = #{deleted}
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
     </update>
 
-<!--        void save(User user);-->
-<!--        parameterType: 参数类型，可以省略-->
-    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.zzdz.security.model.User">
-        insert into user (username, password, fullname, mobile, account_non_expired, account_non_locked, enabled, deleted)
-        values (#{username}, #{password}, #{fullname}, #{mobile}, #{accountNonExpired}, #{accountNonLocked}, #{enabled}, #{deleted})
+    <!-- User findByUsername(String username);-->
+    <select id="findByUsername" resultType="com.zzdz.security.model.User">
+        select * from user where username = #{username} limit 1
+    </select>
+
+    <!-- List<User> findAllByUsername(@Param("username") String username);-->
+    <select id="findAllByUsername" resultType="com.zzdz.security.model.User">
+        select * from user where username = #{username}
+    </select>
+
+    <!-- 动态拼装查询条件 -->
+    <!-- List<User> findAllByDynamic(User user);-->
+    <select id="findAllByDynamic" resultType="com.zzdz.security.model.User">
+        select * from user
+        <where>
+            <choose>
+                <when test="id != null">
+                    id = #{id}
+                </when>
+                <otherwise>
+                    <if test="username != null and username != '' ">
+                        username = #{username}
+                    </if>
+                    <if test="fullname != null and fullname.trim() != '' ">
+                        and fullname = #{fullname}
+                    </if>
+                    <if test="enabled == true or enabled == false ">
+                        and enabled = #{enabled}
+                    </if>
+                    <if test="deleted == true or deleted == false ">
+                        and deleted = #{deleted}
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!-- List<User> findAllByIds(List<Integer> ids);-->
+    <select id="findAllByIds" resultType="com.zzdz.security.model.User">
+        select * from user
+        where id in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- void addUsers(@Param("users") List<User> users);-->
+    <insert id="addUsers">
+        insert into user (username, password, fullname, mobile, enabled, deleted)
+        values
+        <foreach item="user" index="index" collection="users" separator=",">
+            (#{user.username}, #{user.password}, #{user.fullname}, #{user.mobile}, #{user.enabled}, #{user.deleted})
+        </foreach>
     </insert>
-
-
 
 </mapper>

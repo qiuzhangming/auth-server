@@ -1,4 +1,4 @@
-package com.zzdz.security.mapper;
+package com.zzdz.security.service;
 
 import com.zzdz.security.model.User;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2019/11/4 14:50
  * @Created by joe
  */
-public interface UserMapper {
+public interface UserMapperService {
 
     boolean save(User user);
 

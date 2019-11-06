@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzdz.security.mapper.AuthorityMapper">
+
+    <!-- boolean save(Authority user);-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.zzdz.security.model.Authority">
+        insert into authority(authority_name, authority_describe)
+        values (#{authorityName}, #{authorityDescribe})
+    </insert>
+
+    <!-- boolean deleteById(@Param("id") Integer id);-->
+    <delete id="deleteById" parameterType="com.zzdz.security.model.Authority">
+        delete from authority where id = #{id}
+    </delete>
+
+    <!-- boolean updateById(Authority authority);-->
+    <update id="updateById" parameterType="com.zzdz.security.model.Authority">
+        update authority set authority_name = #{authorityName}, authority_describe=#{authorityDescribe} where id = #{id}
+    </update>
+
+    <!-- Authority findById(@Param("id") Integer id);-->
+    <select id="findById" resultType="com.zzdz.security.model.Authority">
+        select id, authority_name, authority_describe from authority where id = #{id}
+    </select>
+
+
+</mapper>
