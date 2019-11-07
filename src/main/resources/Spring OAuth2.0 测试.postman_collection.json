@@ -68,13 +68,11 @@
 					"query": [
 						{
 							"key": "response_type",
-							"value": "token",
-							"description": "获取token"
+							"value": "token"
 						},
 						{
 							"key": "client_id",
-							"value": "c1",
-							"description": "客户端ID"
+							"value": "c1"
 						},
 						{
 							"key": "scope",
@@ -99,7 +97,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/oauth/token?grant_type=authorization_code&code=rLMLgd&client_id=c1&client_secret=secret&redirect_uri=http://www.baidu.com&scope=all",
+					"raw": "http://localhost:8080/oauth/token?grant_type=authorization_code&code=9I80gy&client_id=c1&client_secret=secret&redirect_uri=http://www.baidu.com",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -117,7 +115,7 @@
 						},
 						{
 							"key": "code",
-							"value": "rLMLgd",
+							"value": "9I80gy",
 							"description": "授权码，使用后失效"
 						},
 						{
@@ -137,8 +135,9 @@
 						},
 						{
 							"key": "scope",
-							"value": "all",
-							"description": "选填，如果填写的话需要跟服务器保持一致"
+							"value": "ROLE_API",
+							"description": "选填，如果填写的话需要跟服务器保持一致",
+							"disabled": true
 						}
 					]
 				}
@@ -233,7 +232,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/oauth/check_token?token=e8653ba1-d81f-4bce-b05d-6fd2906ca679",
+					"raw": "http://localhost:8080/oauth/check_token?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ6cyIsInNjb3BlIjpbIlJPTEVfQURNSU4iXSwiZXhwIjoxNTczMTA2ODczLCJhdXRob3JpdGllcyI6WyJwMSIsInAyIiwicDMiXSwianRpIjoiYWNmMzU2YmYtY2U1Zi00NTI5LThkZGUtMjc0YTJiMzI1ZTY5IiwiY2xpZW50X2lkIjoiYzEifQ.UUBi4PVioKUWckDvaoIABKD9FCi_mRBs6C4R-zG2BBk&token_type=bearer&expires_in=7199",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -246,7 +245,7 @@
 					"query": [
 						{
 							"key": "token",
-							"value": "e8653ba1-d81f-4bce-b05d-6fd2906ca679"
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ6cyIsInNjb3BlIjpbIlJPTEVfQURNSU4iXSwiZXhwIjoxNTczMTA2ODczLCJhdXRob3JpdGllcyI6WyJwMSIsInAyIiwicDMiXSwianRpIjoiYWNmMzU2YmYtY2U1Zi00NTI5LThkZGUtMjc0YTJiMzI1ZTY5IiwiY2xpZW50X2lkIjoiYzEifQ.UUBi4PVioKUWckDvaoIABKD9FCi_mRBs6C4R-zG2BBk&token_type=bearer&expires_in=7199"
 						}
 					]
 				}
@@ -259,7 +258,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=fc444e5d-cc5a-48bc-8eff-674cb0027f58&client_id=c1&client_secret=secret",
+					"raw": "http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ6cyIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiJjMjQxMWFjZS1mODg2LTQxNmItODU2NC1mYmNjYTVkNmUzMGUiLCJleHAiOjE1NzI4NDM1NDcsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6IjBkZTEyNDU5LTI4ZmQtNGZlMC1hOWZhLTc5YmVkN2UxNGE0NCIsImNsaWVudF9pZCI6ImMxIn0.SdMWupn4TyXGq4hEkkUxgcC5xpjE6Rvc-6eJ2MNL1nw&client_id=c1&client_secret=secret",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -276,7 +275,7 @@
 						},
 						{
 							"key": "refresh_token",
-							"value": "fc444e5d-cc5a-48bc-8eff-674cb0027f58"
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ6cyIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiJjMjQxMWFjZS1mODg2LTQxNmItODU2NC1mYmNjYTVkNmUzMGUiLCJleHAiOjE1NzI4NDM1NDcsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6IjBkZTEyNDU5LTI4ZmQtNGZlMC1hOWZhLTc5YmVkN2UxNGE0NCIsImNsaWVudF9pZCI6ImMxIn0.SdMWupn4TyXGq4hEkkUxgcC5xpjE6Rvc-6eJ2MNL1nw"
 						},
 						{
 							"key": "client_id",
@@ -298,7 +297,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ6cyIsInNjb3BlIjpbIlJPTEVfQURNSU4iXSwiZXhwIjoxNTczMTA2ODczLCJhdXRob3JpdGllcyI6WyJwMSIsInAyIiwicDMiXSwianRpIjoiYWNmMzU2YmYtY2U1Zi00NTI5LThkZGUtMjc0YTJiMzI1ZTY5IiwiY2xpZW50X2lkIjoiYzEifQ.UUBi4PVioKUWckDvaoIABKD9FCi_mRBs6C4R-zG2BBk",
 						"type": "text"
 					}
 				],

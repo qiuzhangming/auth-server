@@ -15,7 +15,7 @@ public class AuthServerApplicationTests {
     public void contextLoads() {
 
         BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
-        String hashPass = bcryptPasswordEncoder.encode("456");
+        String hashPass = bcryptPasswordEncoder.encode("secret");
         System.out.println(hashPass);
     }
 
