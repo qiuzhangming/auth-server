@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
  * @Date 2019/11/6 13:36
  * @Created by joe
  */
-//@Transactional
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceImplTest {
