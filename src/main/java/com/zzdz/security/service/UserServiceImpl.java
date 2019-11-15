@@ -1,8 +1,11 @@
 package com.zzdz.security.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zzdz.security.mapper.UserMapper;
 import com.zzdz.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+        String encodePassword = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(encodePassword);
         userMapper.save(user);
         return user;
     }
@@ -60,5 +65,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUsers(List<User> users) {
         userMapper.addUsers(users);
+    }
+
+    @Override
+    public List<User> findAll(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> users = userMapper.findAll();
+        return users;
     }
 }

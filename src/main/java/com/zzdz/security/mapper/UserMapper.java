@@ -35,4 +35,6 @@ public interface UserMapper {
     List<User> findAllByIds(@Param("ids") List<Integer> ids);
 
     void addUsers(@Param("users") List<User> users);
+
+    List<User> findAll();
 }

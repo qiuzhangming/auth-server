@@ -114,4 +114,9 @@
         </foreach>
     </insert>
 
+    <!-- List<User> findAll();-->
+    <select id="findAll" resultType="com.zzdz.security.model.User">
+        select * from user
+    </select>
+
 </mapper>

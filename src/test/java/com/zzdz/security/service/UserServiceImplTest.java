@@ -33,13 +33,12 @@ public class UserServiceImplTest {
     @Test
     public void save() {
         User user = new User();
-        user.setUsername("zs");
-        user.setPassword(new BCryptPasswordEncoder().encode("123"));
-        user.setFullname("张三");
+        user.setUsername("admin");
+        user.setPassword("admin");
+        user.setFullname("管理员");
         user.setMobile("13333333333");
         user.setEnabled(true);
         user.setDeleted(false);
-
         System.out.println(userService.save(user));
     }
 
@@ -68,10 +67,10 @@ public class UserServiceImplTest {
     public void findAllByUsername() {
         PageHelper.startPage(3, 1);
         List<User> users = userService.findAllByUsername("zs");
-        System.out.println(users);
+        System.out.println("users:" + users);
 
         PageInfo pageInfo = new PageInfo(users);
-        System.out.println(pageInfo);
+        System.out.println("pageInfo:"+pageInfo);
     }
 
     @Test

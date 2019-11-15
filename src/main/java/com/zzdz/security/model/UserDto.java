@@ -5,22 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
- * @Classname User
+ * @Classname UserDto
  * @Description TODO
- * @Date 2019/11/4 13:30
+ * @Date 2019/11/15 15:24
  * @Created by joe
  */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Accessors(chain = true)
-public class User implements Serializable {
+public class UserDto {
 
     private Integer id;
 
@@ -31,12 +26,4 @@ public class User implements Serializable {
     private String fullname;
 
     private String mobile;
-
-    // 是否启用
-    private Boolean enabled;
-
-    // 是否删除
-    private Boolean deleted;
-
-    List<Authority> authorities = new ArrayList<>();
 }
