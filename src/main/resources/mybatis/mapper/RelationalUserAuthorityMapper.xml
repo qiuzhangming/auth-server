@@ -19,7 +19,14 @@
 <!--    boolean updateById(RelationalUserAuthority userAuthority);-->
     <update id="updateById">
         update relational_user_authority
-        set user_id = #{userId}, authority_id = #{authorityId}
+        <set>
+            <if test="userId != null and userId.trim() != ''">
+                user_id = #{userId},
+            </if>
+            <if test="authorityId != null and authorityId.trim() != ''">
+                authority_id = #{authorityId}
+            </if>
+        </set>
         where id = #{id}
     </update>
 <!--    RelationalUserAuthority findByUserIdAndAuthorityId(@Param("userId") Integer userId, @Param("authorityId") Integer authorityId);-->

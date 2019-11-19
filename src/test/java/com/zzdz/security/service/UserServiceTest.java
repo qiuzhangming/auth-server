@@ -18,7 +18,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * @Classname UserServiceImplTest
+ * @Classname UserServiceTest
  * @Description TODO
  * @Date 2019/11/6 13:36
  * @Created by joe
@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceImplTest {
+public class UserServiceTest {
     @Autowired
     UserService userService;
 

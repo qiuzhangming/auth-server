@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.*;
 
 /**
- * @Classname AuthorityServiceImplTest
+ * @Classname AuthorityServiceTest
  * @Description TODO
  * @Date 2019/11/6 16:32
  * @Created by joe
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AuthorityServiceImplTest {
+public class AuthorityServiceTest {
 
     @Autowired
     AuthorityService authorityService;

@@ -2,6 +2,8 @@ package com.zzdz.security.service;
 
 import com.zzdz.security.model.Authority;
 
+import java.util.List;
+
 /**
  * @Classname AuthorityService
  * @Description TODO
@@ -17,4 +19,6 @@ public interface AuthorityService {
     boolean updateById(Authority authority);
 
     Authority findById(Integer id);
+
+    List<Authority> findAll(int pageNum, int pageSize);
 }

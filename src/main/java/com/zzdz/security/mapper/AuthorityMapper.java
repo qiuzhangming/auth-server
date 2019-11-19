@@ -3,6 +3,8 @@ package com.zzdz.security.mapper;
 import com.zzdz.security.model.Authority;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 /**
  * @Classname AuthorityMapper
@@ -19,5 +21,7 @@ public interface AuthorityMapper {
     boolean updateById(Authority authority);
 
     Authority findById(@Param("id") Integer id);
+
+    List<Authority> findAll();
 
 }

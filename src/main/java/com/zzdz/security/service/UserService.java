@@ -24,6 +24,11 @@ public interface UserService {
 
     boolean updateById(User user);
 
+    /**
+     * 包含了用户权限信息的查找方法
+     * @param username
+     * @return
+     */
     User findByUsername(String username);
 
     List<User> findAllByUsername(String username);

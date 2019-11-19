@@ -1,9 +1,10 @@
-package com.zzdz.security.service;
+package com.zzdz.security.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zzdz.security.mapper.UserMapper;
 import com.zzdz.security.model.User;
+import com.zzdz.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

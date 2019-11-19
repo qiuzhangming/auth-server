@@ -1,7 +1,8 @@
-package com.zzdz.security.service;
+package com.zzdz.security.service.impl;
 
 import com.zzdz.security.mapper.RelationalUserAuthorityMapper;
 import com.zzdz.security.model.RelationalUserAuthority;
+import com.zzdz.security.service.RelationalUserAuthorityMapperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

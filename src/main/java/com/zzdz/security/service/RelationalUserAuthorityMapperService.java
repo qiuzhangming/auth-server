@@ -21,5 +21,5 @@ public interface RelationalUserAuthorityMapperService {
 
     RelationalUserAuthority findByUserIdAndAuthorityId(Integer userId, Integer authorityId);
 
-    List<RelationalUserAuthority> findByUserId(@Param("userId") Integer userId);
+    List<RelationalUserAuthority> findByUserId(Integer userId);
 }

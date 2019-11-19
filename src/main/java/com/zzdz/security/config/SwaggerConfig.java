@@ -56,7 +56,7 @@ public class SwaggerConfig {
                 //版本号
                 .version("1.0")
                 //描述
-                .description("测试环境，随便折腾。")
+                .description("测试环境使用，开发环境记得关闭。")
                 .build();
     }
 }

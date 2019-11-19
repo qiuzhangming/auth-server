@@ -36,16 +36,16 @@
     <update id="updateById" parameterType="com.zzdz.security.model.User" >
         update user
         <set>
-            <if test="fullname != null">
+            <if test="fullname != null and fullname.trim() != '' ">
                 fullname = #{fullname},
             </if>
-            <if test="mobile != null">
+            <if test="mobile != null and mobile.trim() != '' ">
                 mobile = #{mobile},
             </if>
-            <if test="enabled != null ">
+            <if test="enabled == true or enabled == false">
                 enabled = #{enabled},
             </if>
-            <if test="deleted != null ">
+            <if test="deleted == true or deleted == false">
                 deleted = #{deleted}
             </if>
         </set>

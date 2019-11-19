@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * @Classname RelationalUserAuthorityMapperServiceImplTest
+ * @Classname RelationalUserAuthorityMapperServiceTest
  * @Description TODO
  * @Date 2019/11/6 17:06
  * @Created by joe
@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RelationalUserAuthorityMapperServiceImplTest {
+public class RelationalUserAuthorityMapperServiceTest {
 
     @Autowired
     RelationalUserAuthorityMapperService userAuthorityMapperService;

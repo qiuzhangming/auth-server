@@ -18,7 +18,16 @@
 
     <!-- boolean updateById(Authority authority);-->
     <update id="updateById" parameterType="com.zzdz.security.model.Authority">
-        update authority set authority_name = #{authorityName}, authority_describe=#{authorityDescribe} where id = #{id}
+        update authority
+        <set>
+            <if test="authorityName != null and authorityName.trim() != ''">
+                authority_name = #{authorityName},
+            </if>
+            <if test="authorityDescribe != null and authorityDescribe.trim() != ''">
+                authority_describe=#{authorityDescribe}
+            </if>
+        </set>
+        where id = #{id}
     </update>
 
     <!-- Authority findById(@Param("id") Integer id);-->
@@ -26,5 +35,9 @@
         select id, authority_name, authority_describe from authority where id = #{id}
     </select>
 
+    <!-- List<Authority> findAll();-->
+    <select id="findAll" resultType="com.zzdz.security.model.Authority">
+        select id, authority_name, authority_describe from authority
+    </select>
 
 </mapper>

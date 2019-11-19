@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @Classname RelationalUserAuthority
  * @Description 用户和权限关系
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RelationalUserAuthority {
+public class RelationalUserAuthority implements Serializable {
 
     private Integer id;
 
