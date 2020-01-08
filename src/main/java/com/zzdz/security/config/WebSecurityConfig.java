@@ -2,10 +2,13 @@ package com.zzdz.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +21,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
  * @Date 2019/10/31 15:08
  * @Created by joe
  */
+//@Order(-1)
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -66,17 +70,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS).permitAll() // 对option不校验
                 //.antMatchers("/r/r1").hasAnyAuthority("p1")
-                //.antMatchers("/user/**").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                //允许表单登录
-                .formLogin()
-                // 自定义登录成功页面
-//                .successForwardUrl("/login-success")
+                //.formLogin()//允许表单登录
+                //.successForwardUrl("/login-success") // 自定义登录成功页面
+                //.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //禁用session
+                .cors()
+                .and()
+                .csrf().disable()
         ;
     }
 }
