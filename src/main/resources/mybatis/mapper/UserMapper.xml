@@ -116,7 +116,7 @@
 
     <!-- List<User> findAll();-->
     <select id="findAll" resultType="com.zzdz.security.model.User">
-        select * from user
+        select * from user where deleted = 0
     </select>
 
 </mapper>

@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public User addUser(@RequestBody UserDto userDto) {
         log.info("添加用户:{}", userDto);
 
@@ -49,8 +49,8 @@ public class UserController {
         return userService.updateById(user);
     }
 
-    @PutMapping("/")
-    public Boolean updateUser(User user) {
+    @PutMapping("")
+    public Boolean updateUser(@RequestBody User user) {
         log.info("修改用户用户：{}" +user);
 
         return userService.updateById(user);
